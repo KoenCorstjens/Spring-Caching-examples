@@ -24,13 +24,42 @@ public class Example1 {
 
 
     @Test
-    public void getBrands(){
+    public void getBrandsExample1(){
         List<Brand> brandList1 = brandService.getBrands();
         Assert.assertEquals(5, brandList1.size());
+
         List<Brand> brandList2 = brandService.getBrands();
         Assert.assertEquals(5, brandList2.size());
+
         List<Brand> brandList3 = brandService.getBrands();
         Assert.assertEquals(5, brandList3.size());
+
         Brand brand = brandService.getBrand(1l);
+        List<Brand> brandList4 = brandService.getBrands();
+        Assert.assertEquals(5, brandList4.size());
+
     }
+
+    @Test
+    public void getBrandsExample2(){
+        List<Brand> brandList1 = brandService.getBrands();
+        Assert.assertEquals(5, brandList1.size());
+
+        List<Brand> brandList2 = brandService.getBrands();
+        Assert.assertEquals(5, brandList2.size());
+
+        List<Brand> brandList3 = brandService.getBrands();
+        Assert.assertEquals(5, brandList3.size());
+
+        Brand brand = brandService.getBrand(1l);
+        List<Brand> brandList4 = brandService.getBrands();
+        Assert.assertEquals(5, brandList4.size());
+
+        Brand brand2 = brandService.getBrand(1l);
+        Brand newBrand = new Brand(6L,"Esprit");
+        brandService.saveBrand(newBrand);
+
+        Brand brand6 = brandService.getBrand(6l);
+    }
+
 }

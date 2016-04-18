@@ -6,7 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by koencorstjens on 17/04/16.
@@ -15,22 +17,33 @@ import java.util.List;
 public class BrandServiceImpl implements BrandService{
 
     private final Logger log = Logger.getLogger(BrandServiceImpl.class);
+    private Map<Long, Brand> brands = new HashMap<>();
+
+    public BrandServiceImpl(){
+        brands.put(1l,new Brand(1l,"Nike"));
+        brands.put(2l,new Brand(2l,"Adidas"));
+        brands.put(3l,new Brand(3l,"Nort Face"));
+        brands.put(4l,new Brand(4l,"Nomad"));
+        brands.put(5l,new Brand(5l,"Reebok"));
+    }
+
 
     @Override
     public List<Brand> getBrands() {
         log.info("BrandServiceImpl getBrands");
-        List<Brand> brands = new ArrayList<>();
-        brands.add(new Brand(1l,"Nike"));
-        brands.add(new Brand(2l,"Adidas"));
-        brands.add(new Brand(3l,"Nort Face"));
-        brands.add(new Brand(4l,"Nomad"));
-        brands.add(new Brand(5l,"Reebok"));
-        return brands;
+        return new ArrayList<Brand>(brands.values());
     }
 
     @Override
     public Brand getBrand(Long id) {
         log.info("BrandServiceImpl getBrand"+id);
         return new Brand(id,"Nike");
+    }
+
+    @Override
+    public Brand saveBrand(Brand brand) {
+        log.info("BrandServiceImpl saveBrand"+brand.getId());
+        brands.put(brand.getId(),brand);
+        return brand;
     }
 }
